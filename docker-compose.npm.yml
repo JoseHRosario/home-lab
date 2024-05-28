@@ -22,7 +22,6 @@ services:
     volumes:
       - /srv/docker/npm/data:/data
       - /srv/docker/npm-letsencrypt:/etc/letsencrypt
-      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - db
     networks:
