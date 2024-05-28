@@ -15,6 +15,7 @@ services:
     command: ['start.sh', 'immich']
     volumes:
       - ${IMMICH_UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${EXTERNAL_PATH}:/usr/src/app/external
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
@@ -36,6 +37,7 @@ services:
     command: ['start.sh', 'microservices']
     volumes:
       - ${IMMICH_UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${EXTERNAL_PATH}:/usr/src/app/external
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
