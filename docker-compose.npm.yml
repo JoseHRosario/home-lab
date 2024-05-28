@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   app:
+    container_name: npm_app
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
@@ -30,6 +31,7 @@ services:
 
 
   db:
+    container_name: npm_db
     image: 'jc21/mariadb-aria:latest'
     restart: unless-stopped
     environment:
