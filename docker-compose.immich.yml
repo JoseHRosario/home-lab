@@ -17,7 +17,7 @@ services:
       - ${IMMICH_UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - stack.env
+      - .env
     ports:
       - 2283:3001
     depends_on:
@@ -38,7 +38,7 @@ services:
       - ${IMMICH_UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - stack.env
+      - .env
     depends_on:
       - redis
       - database
@@ -57,7 +57,7 @@ services:
     volumes:
       - /srv/docker/immich_machine_learning:/cache
     env_file:
-      - stack.env
+      - .env
     restart: always
     networks:
       - coiso
