@@ -12,7 +12,8 @@ services:
     volumes:
       - /srv/docker/duplicati/appdata/config:/config
       - /srv/docker/duplicati/backups:/backups
-      - /srv/docker/duplicati/source:/source
+      - /d/samba/pictures:/pictures
+      - /srv/docker:/dockervolumes
     ports:
       - 8200:8200
     networks:
