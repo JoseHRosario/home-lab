@@ -5,9 +5,9 @@ services:
     image: lscr.io/linuxserver/duplicati:latest
     container_name: duplicati
     environment:
-      - PUID: 1000
-      - PGID: 1000
-      - TZ: 'Europe/Lisbon'
+      PUID: 1000
+      PGID: 1000
+      TZ: 'Europe/Lisbon'
       #- CLI_ARGS= #optional
     volumes:
       - /srv/docker/duplicati/appdata/config:/config
