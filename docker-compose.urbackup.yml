@@ -8,6 +8,8 @@ services:
       PUID: 0
       PGID: 0
       TZ: 'Europe/Lisbon'
+    ports:
+      - '55414:55414' 
     volumes:
       - /srv/docker/urbackup-server:/var/urbackup
       - /srv/docker/urbackup-server/backups:/backups
