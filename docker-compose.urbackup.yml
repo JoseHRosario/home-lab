@@ -26,6 +26,21 @@ services:
       - coiso
     restart: unless-stopped
 
+
+  urbackup:
+    image: uroni/urbackup-client:latest
+    container_name: urbackup-client
+    environment:
+      TZ: 'Europe/Lisbon'
+      URBACKUP_SERVER_NAME: example.com
+      URBACKUP_CLIENT_NAME: exampleclientname
+      URBACKUP_CLIENT_AUTHKEY: secretkey
+    volumes:
+      - /srv/docker/urbackup-server/backups:/backup  
+    networks:
+      - coiso
+    restart: unless-stopped
+
 networks:
   coiso:
     name: coiso
