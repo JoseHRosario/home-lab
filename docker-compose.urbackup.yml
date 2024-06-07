@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  urbackup:
+  urbackup-server:
     image: uroni/urbackup-server:latest
     container_name: urbackup-server
     environment:
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
 
 
-  urbackup:
+  urbackup-client:
     image: uroni/urbackup-client:latest
     container_name: urbackup-client
     environment:
