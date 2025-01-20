@@ -4,8 +4,8 @@ services:
   dashy:
     image: lissy93/dashy
     container_name: Dashy
-    volumes:
-      - /srv/docker/dashy/app/user-data:/app/user-data
+    #volumes:
+    #  - /srv/docker/dashy/app/user-data:/app/user-data
     ports:
       - 3010:8080
     # Set any environmental variables
