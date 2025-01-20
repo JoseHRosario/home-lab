@@ -10,3 +10,10 @@ services:
     ports:
       - 3002:3001  
     restart: always
+    networks:
+      - coiso
+      
+networks:
+  coiso:
+    name: coiso
+    external: true
