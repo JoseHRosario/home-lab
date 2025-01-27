@@ -1,0 +1,16 @@
+  services:
+    authelia:
+    container_name: 'authelia'
+    image: 'authelia/authelia'
+    restart: 'unless-stopped'
+    volumes:
+      - /srv/docker/authelia/config:/config
+    environment:
+      TZ: ${TZ}
+    networks:
+      - coiso
+      
+networks:
+  coiso:
+    name: coiso
+    external: true
