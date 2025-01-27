@@ -1,5 +1,5 @@
-  services:
-    authelia:
+services:
+  authelia:
     container_name: 'authelia'
     image: 'authelia/authelia'
     restart: 'unless-stopped'
