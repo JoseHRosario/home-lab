@@ -7,6 +7,8 @@ services:
       - /srv/docker/authelia/config:/config
     environment:
       TZ: ${TZ}
+    ports:
+      - 9091:9091
     networks:
       - coiso
       
