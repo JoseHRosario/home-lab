@@ -18,8 +18,8 @@ services:
       FTLCONF_webserver_api_password: 'Sporting.1906' 
     # Volumes store your data between container upgrades
     volumes:
-      - '/srv/docker/pihole/etc-pihole:/etc/pihole'
-      - '/srv/docker/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
+      - '/srv/docker/pihole6/etc-pihole:/etc/pihole'
+      - '/srv/docker/pihole6/etc-dnsmasq.d:/etc/dnsmasq.d'
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     # cap_add:
     #   - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
