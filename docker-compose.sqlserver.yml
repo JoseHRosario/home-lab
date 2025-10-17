@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mssql-server-dev:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql-server-dev
+    hostname: mssql-server-dev-db
+    restart: unless-stopped
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Sporting.1906
+      # OPTIONAL: Choose the edition (Developer is free for non-production use)
+      - MSSQL_PID=Developer
+      # OPTIONAL: Set the server collation (default is SQL_Latin1_General_CP1_CI_AS)
+      # - MSSQL_COLLATION=Latin1_General_100_CI_AS_SC
+      # OPTIONAL: Set the time zone
+      - TZ=${TZ}
+    volumes:
+      - ${SQL_SERVER_DEV_PATH}:/var/opt/mssql
+
+
+networks:
+  default:
+    name: development-server
