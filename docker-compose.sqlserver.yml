@@ -22,5 +22,6 @@ services:
 
 
 networks:
-  default:
+  development-server:
     name: development-server
+    external: true
