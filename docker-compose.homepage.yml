@@ -13,9 +13,13 @@ services:
     restart: unless-stopped
     networks:
       - coiso
-      - bridge
+      - homelab-bridge
       
 networks:
   coiso:
     name: coiso
     external: true
+  
+  homelab-bridge: # To connect to portainer
+    driver: bridge
+    name: homelab-bridge
