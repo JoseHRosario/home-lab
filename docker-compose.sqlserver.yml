@@ -19,8 +19,9 @@ services:
       - TZ=${TZ}
     volumes:
       - ${SQL_SERVER_DEV_PATH}:/var/opt/mssql
-
-
+    networks:
+      - development-server
+      
 networks:
   development-server:
     name: development-server
