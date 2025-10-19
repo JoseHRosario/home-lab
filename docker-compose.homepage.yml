@@ -9,6 +9,7 @@ services:
     volumes:
       - /srv/docker/homepage/config:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
+      - /d:/d:ro
     restart: unless-stopped
     networks:
       - coiso
