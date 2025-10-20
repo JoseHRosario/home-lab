@@ -1,0 +1,16 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "8082:8080"
+    volumes:
+      - ${JENKINS_VOLUME_PATH}:/var/jenkins_home
+  
+  ssh-agent:
+    image: jenkins/ssh-agent
+
+networks:
+  development-server:
+    name: development-server
+    external: true

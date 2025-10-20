@@ -18,7 +18,7 @@ services:
       # OPTIONAL: Set the time zone
       - TZ=${TZ}
     volumes:
-      - ${SQL_SERVER_DEV_PATH}:/var/opt/mssql
+      - ${SQL_SERVER_DEV_VOLUME_PATH}:/var/opt/mssql
     networks:
       - development-server
       
