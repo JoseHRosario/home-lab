@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  bitcoind:
+    image: bitcoin-core:latest    
+    container_name: bitcoind
+    restart: unless-stopped
+    user: "1000:1000"
+    volumes:
+      - /srv/docker/bitcoin:/home/bitcoin/.bitcoin
+    ports:
+      - "8333:8333"         # Bitcoin P2P network
+      - "127.0.0.1:8332:8332" # RPC (bound to localhost only)
+    command:
+      - -printtoconsole
+      - -conf=/home/bitcoin/.bitcoin/bitcoin.conf
+      - -datadir=/home/bitcoin/.bitcoin
