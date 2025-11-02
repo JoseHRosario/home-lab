@@ -15,3 +15,10 @@ services:
       - -printtoconsole
       - -conf=/home/bitcoin/.bitcoin/bitcoin.conf
       - -datadir=/home/bitcoin/.bitcoin
+    networks:
+      - coiso
+
+networks:
+  coiso:
+    name: coiso
+    external: true
