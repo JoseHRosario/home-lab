@@ -1,30 +1,71 @@
 version: "3.8"
 
 services:
-  infisical:
-    image: infisical/self-hosted:latest
-    container_name: infisical
+  backend:
+    container_name: infisical-backend
+    image: infisical/infisical:latest-postgres
+    pull_policy: always
     restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
     ports:
-      - "8085:8080"       # Web UI and API
+      - "8080:8080"
     environment:
-      # Generate this once and never change it!
-      - ENCRYPTION_KEY_FILE=/config/encryption.key
-      - DATABASE_URL=file:/data/infisical.sqlite
-      - PORT=8080
       - NODE_ENV=production
-      - DISABLE_TELEMETRY=true
-    volumes:
-      - /srv/docker/infisical/config:/config
-      - /srv/docker/infisical/data:/data
-    # healthcheck:
-    #   test: ["CMD", "wget", "-qO-", "http://localhost:8080/api/status"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 5
+      # Optional overrides (can also go in .env)
+      - DB_CONNECTION_URI=postgresql://infisical:$(cat /run/secrets/postgres_password)@db:5432/infisical
+      - REDIS_URL=redis://redis:6379
+      - SITE_URL=http://localhost:8080
+      - ENCRYPTION_KEY_FILE=/run/secrets/encryption_key
+      - AUTH_SECRET_FILE=/run/secrets/auth_secret
+    secrets:
+      - encryption_key
+      - auth_secret  
     networks:
       - coiso
-      
+
+  redis:
+    image: redis:7-alpine
+    container_name: infisical-redis
+    restart: unless-stopped
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - /srv/docker/infisical/redis_data:/data
+    networks:
+      - coiso
+
+  db:
+    image: postgres:15-alpine
+    container_name: infisical-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=infisical
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+      - POSTGRES_DB=infisical
+    volumes:
+      - /srv/docker/infisical/pg_data:/var/lib/postgresql/data
+    secrets:
+      - postgres_password      
+    networks:
+      - coiso
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready --username=infisical && psql --username=infisical --list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+secrets:
+  postgres_password:
+    file: /srv/docker/infisical/secrets/postgres-password
+  encryption_key:
+    file: /srv/docker/infisical/secrets/encryption-key
+  auth_secret:
+    file: /srv/docker/infisical/secrets/auth-secret
+
 networks:
   coiso:
     name: coiso
