@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  infisical:
+    image: infisical/self-hosted:latest
+    container_name: infisical
+    restart: unless-stopped
+    ports:
+      - "8085:8080"       # Web UI and API
+    environment:
+      # Generate this once and never change it!
+      - ENCRYPTION_KEY_FILE=/config/encryption.key
+      - DATABASE_URL=file:/data/infisical.sqlite
+      - PORT=8080
+      - NODE_ENV=production
+      - DISABLE_TELEMETRY=true
+    volumes:
+      - /srv/docker/infisical/config:/config
+      - /srv/docker/infisical/data:/data
+    # healthcheck:
+    #   test: ["CMD", "wget", "-qO-", "http://localhost:8080/api/status"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 5
+    networks:
+      - coiso
+      
+networks:
+  coiso:
+    name: coiso
+    external: true
