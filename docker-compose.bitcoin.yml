@@ -14,7 +14,7 @@ services:
     command:
       - bitcoind
       - -printtoconsole
-      - -conf=/home/bitcoin/.bitcoin/bitcoin.conf
+      #- -conf=/home/bitcoin/.bitcoin/bitcoin.conf
       - -datadir=/home/bitcoin/.bitcoin
     networks:
       - coiso
