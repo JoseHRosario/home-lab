@@ -11,10 +11,6 @@ services:
     ports:
       - "8333:8333"         # Bitcoin P2P network
       - "127.0.0.1:8332:8332" # RPC (bound to localhost only)
-    command:
-      - -printtoconsole
-      - -conf=/home/bitcoin/.bitcoin/bitcoin.conf
-      - -datadir=/home/bitcoin/.bitcoin
     networks:
       - coiso
 
