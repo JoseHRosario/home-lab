@@ -5,22 +5,15 @@ services:
   pihole-secrets:
     image: infisical/cli:latest
     container_name: pihole-secrets
-    restart: no
-    entrypoint: 
-      - /bin/sh 
-      - -c 
-      - |
-        # 1. Fix permissions on the script (Necessary since host permissions can be tricky)
-        chmod +x /usr/local/bin/init.sh; 
-        
-        # 2. Execute the initialization script 
-        /usr/local/bin/init.sh fbf2dc8c-6adb-4724-bb22-a0c30c8b3b19; 
-        
-        # 3. Hold the container open ONLY if the init script succeeded
-        # The 'tail' command is executed after the init script exits successfully
-        tail -f /dev/null
+    restart: unless-stopped
+    entrypoint: /bin/sh -c
+    command: >
+      "chmod +x /usr/local/bin/init.sh && 
+      /usr/local/bin/init.sh fbf2dc8c-6adb-4724-bb22-a0c30c8b3b19 && 
+      tail -f /dev/null"
     environment:
       - INFISICAL_ENV=Production
+      - INFISICAL_API_URL=http://infisical-backend:8085
     volumes:
       - /srv/docker/infisical/init/init.sh:/usr/local/bin/init.sh
       - /srv/docker/infisical/secrets:/secrets
