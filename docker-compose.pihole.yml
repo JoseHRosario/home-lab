@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     entrypoint: /bin/sh -c
     command: >
-      "/usr/local/bin/init.sh fbf2dc8c-6adb-4724-bb22-a0c30c8b3b19 prod secrets-pihole.env  && 
+      "/usr/local/bin/init.sh fbf2dc8c-6adb-4724-bb22-a0c30c8b3b19 prod pihole.env  && 
       tail -f /dev/null"
     environment:
       - INFISICAL_API_URL=http://infisical-backend:8080
@@ -32,7 +32,7 @@ services:
       - "8081:80/tcp"
       - "8082:443/tcp"
     env_file:
-      - /secrets/secrets-pihole.env
+      - /secrets/pihole.env
     environment:
       TZ: ${TZ}
       FTLCONF_webserver_api_password: ${FTLCONF_webserver_api_password}
