@@ -13,7 +13,7 @@ services:
       tail -f /dev/null"
     environment:
       - INFISICAL_ENV=Production
-      - INFISICAL_API_URL=http://infisical-backend:8085
+      - INFISICAL_API_URL=http://infisical-backend:8080
     volumes:
       - /srv/docker/infisical/init/init.sh:/usr/local/bin/init.sh
       - /srv/docker/infisical/secrets:/secrets
