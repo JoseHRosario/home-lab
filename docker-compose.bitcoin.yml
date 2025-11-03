@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     user: "1000:1000"
     volumes:
-      - /srv/docker/bitcoin:/home/bitcoin/.bitcoin
+      - /d/srv/docker/bitcoin:/home/bitcoin/.bitcoin
     ports:
       - "8333:8333"         # Bitcoin P2P network
       - "127.0.0.1:8332:8332" # RPC (bound to localhost only)
