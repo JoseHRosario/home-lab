@@ -13,7 +13,7 @@ services:
     environment:
       - INFISICAL_ENV=Production
     volumes:
-      - /srv/docker/infisical/init/init.sh:/usr/local/bin/init.sh:ro
+      - /srv/docker/infisical/init/init.sh:/usr/local/bin/init.sh
       - /srv/docker/infisical/secrets:/secrets
     networks:
       - coiso
