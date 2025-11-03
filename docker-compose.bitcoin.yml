@@ -19,23 +19,23 @@ services:
     networks:
       - coiso
   
-  mempool:
-    image: mempool/mempool:latest
-    container_name: mempool
-    restart: unless-stopped
-    depends_on:
-      - bitcoind
-    environment:
-      - MEMPOOL_NETWORK=mainnet
-      - BITCOIN_NODE_HOST=bitcoind
-      - BITCOIN_NODE_PORT=8332
-      - BITCOIN_NODE_USER=
-      - BITCOIN_NODE_PASS=
-      - MEMPOOL_BACKEND=none
-    ports:
-      - "4080:80"
-    networks:
-      - coiso
+  # mempool:
+  #   image: mempool/mempool:latest
+  #   container_name: mempool
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - bitcoind
+  #   environment:
+  #     - MEMPOOL_NETWORK=mainnet
+  #     - BITCOIN_NODE_HOST=bitcoind
+  #     - BITCOIN_NODE_PORT=8332
+  #     - BITCOIN_NODE_USER=
+  #     - BITCOIN_NODE_PASS=
+  #     - MEMPOOL_BACKEND=none
+  #   ports:
+  #     - "4080:80"
+  #   networks:
+  #     - coiso
 
 networks:
   coiso:
