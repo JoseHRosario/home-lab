@@ -15,16 +15,11 @@ services:
       - "8085:8080"
     environment:
       - NODE_ENV=production
-      # Optional overrides (can also go in .env)
-      - DB_CONNECTION_URI=postgresql://infisical:$(cat /run/secrets/postgres_password)@db:5432/infisical
+      - DB_CONNECTION_URI=postgresql://infisical:${POSTGRES_PASSWORD}@db:5432/infisical
       - REDIS_URL=redis://redis:6379
       - SITE_URL=http://coiso:8085
-      - ENCRYPTION_KEY=$(cat /run/secrets/encryption_key)
-      - AUTH_SECRET=$(cat /run/secrets/auth_secret)
-    secrets:
-      - encryption_key
-      - auth_secret  
-      - postgres_password
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - AUTH_SECRET=${AUTH_SECRET}
     networks:
       - coiso
 
@@ -45,12 +40,10 @@ services:
     restart: unless-stopped
     environment:
       - POSTGRES_USER=infisical
-      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=infisical
     volumes:
       - /srv/docker/infisical/pg_data:/var/lib/postgresql/data
-    secrets:
-      - postgres_password      
     networks:
       - coiso
     healthcheck:
@@ -58,14 +51,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
-
-secrets:
-  postgres_password:
-    file: /srv/docker/infisical/secrets/postgres-password
-  encryption_key:
-    file: /srv/docker/infisical/secrets/encryption-key
-  auth_secret:
-    file: /srv/docker/infisical/secrets/auth-secret
 
 networks:
   coiso:
