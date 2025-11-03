@@ -19,11 +19,12 @@ services:
       - DB_CONNECTION_URI=postgresql://infisical:$(cat /run/secrets/postgres_password)@db:5432/infisical
       - REDIS_URL=redis://redis:6379
       - SITE_URL=http://coiso:8085
-      - ENCRYPTION_KEY_FILE=/run/secrets/encryption_key
-      - AUTH_SECRET_FILE=/run/secrets/auth_secret
+      - ENCRYPTION_KEY=$(cat /run/secrets/encryption_key)
+      - AUTH_SECRET=$(cat /run/secrets/auth_secret)
     secrets:
       - encryption_key
       - auth_secret  
+      - postgres_password
     networks:
       - coiso
 
