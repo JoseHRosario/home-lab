@@ -18,7 +18,7 @@ services:
       # Optional overrides (can also go in .env)
       - DB_CONNECTION_URI=postgresql://infisical:$(cat /run/secrets/postgres_password)@db:5432/infisical
       - REDIS_URL=redis://redis:6379
-      - SITE_URL=http://localhost:8085
+      - SITE_URL=http://coiso:8085
       - ENCRYPTION_KEY_FILE=/run/secrets/encryption_key
       - AUTH_SECRET_FILE=/run/secrets/auth_secret
     secrets:
