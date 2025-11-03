@@ -6,9 +6,10 @@ services:
     image: infisical/cli:latest
     container_name: pihole-secrets
     restart: unless-stopped
-    entrypoint: /bin/sh 
+    entrypoint: /bin/sh -c
     command: >
-      -c "/usr/local/bin/init.sh fbf2dc8c-6adb-4724-bb22-a0c30c8b3b19 && 
+      "chmod +x /usr/local/bin/init.sh && 
+      /usr/local/bin/init.sh fbf2dc8c-6adb-4724-bb22-a0c30c8b3b19 && 
       tail -f /dev/null"
     environment:
       - INFISICAL_ENV=Production
