@@ -32,7 +32,7 @@ services:
       - "8081:80/tcp"
       - "8082:443/tcp"
     env_file:
-      - /srv/docker/infisical/secrets/pihole.env
+      - /srv/docker/infisical/secrets/.env
     environment:
       TZ: ${TZ}
       FTLCONF_webserver_api_password: ${FTLCONF_webserver_api_password}
