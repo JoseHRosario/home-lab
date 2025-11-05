@@ -12,7 +12,6 @@ services:
       - /d/srv/docker/bitcoin:/home/bitcoin/.bitcoin
     ports:
       - "8333:8333"         # Bitcoin P2P network
-      - "8332:8332"         # RPC
     command:
       - bitcoind
       - -printtoconsole
