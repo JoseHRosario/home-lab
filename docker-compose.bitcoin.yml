@@ -6,36 +6,33 @@ services:
     container_name: bitcoind
     restart: unless-stopped
     user: "1000:1000"
+    env_file:
+      - /srv/docker/env/bitcoin.env      
     volumes:
       - /d/srv/docker/bitcoin:/home/bitcoin/.bitcoin
     ports:
       - "8333:8333"         # Bitcoin P2P network
-      - "127.0.0.1:8332:8332" # RPC (bound to localhost only)
+      - "8332:8332"         # RPC
     command:
       - bitcoind
       - -printtoconsole
-      #- -conf=/home/bitcoin/.bitcoin/bitcoin.conf
+      - -conf=/home/bitcoin/.bitcoin/bitcoin.conf
       - -datadir=/home/bitcoin/.bitcoin
     networks:
       - coiso
   
-  # mempool:
-  #   image: mempool/mempool:latest
-  #   container_name: mempool
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - bitcoind
-  #   environment:
-  #     - MEMPOOL_NETWORK=mainnet
-  #     - BITCOIN_NODE_HOST=bitcoind
-  #     - BITCOIN_NODE_PORT=8332
-  #     - BITCOIN_NODE_USER=
-  #     - BITCOIN_NODE_PASS=
-  #     - MEMPOOL_BACKEND=none
-  #   ports:
-  #     - "4080:80"
-  #   networks:
-  #     - coiso
+  mempool:
+    image: mempool/mempool:latest
+    container_name: mempool
+    restart: unless-stopped
+    depends_on:
+      - bitcoind
+    env_file:
+      - /srv/docker/env/bitcoin.env      
+    ports:
+      - "4080:80"
+    networks:
+      - coiso
 
 networks:
   coiso:
