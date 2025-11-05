@@ -6,7 +6,7 @@ services:
     ports:
       - '9091:9091'
     volumes:
-      - /srv/docker/authelia:/config
+      - /srv/docker/authelia/config:/config
     env_file:
       - /srv/docker/env/bitcoin.env  
     networks:
