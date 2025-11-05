@@ -37,7 +37,6 @@ services:
       - /srv/docker/env/pihole.env
     environment:
       TZ: ${TZ}
-      FTLCONF_webserver_api_password: ${FTLCONF_webserver_api_password}
     # Volumes store your data between container upgrades
     volumes:
       - /srv/docker/pihole6/etc-pihole:/etc/pihole
