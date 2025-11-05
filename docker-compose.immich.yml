@@ -16,10 +16,7 @@ services:
       - /srv/docker/immich_server:/data                   #UPLOAD_LOCATION
       - /d/samba/pictures/immich:/data/library            #LIBRARY_LOCATION
       - /d/samba/pictures/album:/usr/src/app/external     #EXTERNAL_PATH
-    environment:
-      TZ: ${TZ}      
     env_file:
-      - .env
       - /srv/docker/env/immich.env
     ports:
       - '2283:2283'
@@ -43,7 +40,7 @@ services:
     volumes:
       - /srv/docker/immich_machine_learning:/cache
     env_file:
-      - .env
+      - /srv/docker/env/immich.env
     restart: always
     healthcheck:
       disable: false
@@ -53,6 +50,8 @@ services:
   redis:
     container_name: immich_redis
     image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    env_file:
+      - /srv/docker/env/immich.env
     healthcheck:
       test: redis-cli ping || exit 1
     restart: always
