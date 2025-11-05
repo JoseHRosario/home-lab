@@ -41,6 +41,8 @@ services:
     env_file:
       - /srv/docker/env/bitcoin.env
     user: "1000:1000"
+    depends_on:
+      - mempool-db
     restart: on-failure
     stop_grace_period: 1m
     command: "./wait-for-it.sh db:3306 --timeout=720 --strict -- ./start.sh"
