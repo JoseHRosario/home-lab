@@ -13,9 +13,6 @@ services:
       - "8082:443/tcp"
     env_file:
       - /srv/docker/env/pihole.env
-    environment:
-      TZ: ${TZ}
-    # Volumes store your data between container upgrades
     volumes:
       - /srv/docker/pihole6/etc-pihole:/etc/pihole
       - /srv/docker/pihole6/etc-dnsmasq.d:/etc/dnsmasq.d
