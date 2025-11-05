@@ -8,17 +8,10 @@ services:
     restart: unless-stopped
     ports:
       - "1433:1433"
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Sporting.1906
-      # OPTIONAL: Choose the edition (Developer is free for non-production use)
-      - MSSQL_PID=Developer
-      # OPTIONAL: Set the server collation (default is SQL_Latin1_General_CP1_CI_AS)
-      # - MSSQL_COLLATION=Latin1_General_100_CI_AS_SC
-      # OPTIONAL: Set the time zone
-      - TZ=${TZ}
+    env_file:
+      - /srv/docker/env/sqlserver.env
     volumes:
-      - ${SQL_SERVER_DEV_VOLUME_PATH}:/var/opt/mssql
+      - /srv/docker/sql-server-dev:/var/opt/mssql
     networks:
       - development-server
       
