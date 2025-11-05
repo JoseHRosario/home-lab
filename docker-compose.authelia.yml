@@ -1,0 +1,43 @@
+
+services:
+  authelia:
+    image: authelia/authelia
+    container_name: authelia
+    ports:
+      - '9091:9091'
+    volumes:
+      - /srv/docker/authelia:/config
+    env_file:
+      - /srv/docker/env/bitcoin.env  
+    networks:
+      - coiso
+    labels:
+      traefik.enable: 'true'
+      traefik.http.routers.authelia.rule: 'Host(`authelia.example.com`)'
+      traefik.http.routers.authelia.entrypoints: 'https'
+      traefik.http.routers.authelia.tls: 'true'
+      traefik.http.routers.authelia.tls.certresolver: 'letsencrypt'
+      traefik.http.middlewares.authelia.forwardauth.address: 'http://authelia:9091/api/authz/forward-auth'  # yamllint disable-line rule:line-length
+      traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: 'true'
+      traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: 'Remote-User,Remote-Groups,Remote-Name,Remote-Email'  # yamllint disable-line rule:line-length
+    restart: 'unless-stopped'
+    healthcheck:
+      ## In production the healthcheck section should be commented.
+      disable: true
+
+  redis:
+    image: 'redis:alpine'
+    container_name: 'redis'
+    volumes:
+      - './redis:/data'
+    networks:
+      - coiso
+    restart: 'unless-stopped'
+    environment:
+      TZ: 'Australia/Melbourne'
+
+
+networks:
+  coiso:
+    name: coiso
+    external: true
