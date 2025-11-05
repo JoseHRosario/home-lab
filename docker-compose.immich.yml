@@ -13,10 +13,11 @@ services:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     volumes:
-      - ${IMMICH_UPLOAD_LOCATION}:/data
-      - ${IMMICH_LIBRARY_LOCATION}:/data/library
-      - ${EXTERNAL_PATH}:/usr/src/app/external
-      - /etc/localtime:/etc/localtime:ro
+      - /srv/docker/immich_server:/data                   #UPLOAD_LOCATION
+      - /d/samba/pictures/immich:/data/library            #LIBRARY_LOCATION
+      - /d/samba/pictures/album:/usr/src/app/external     #EXTERNAL_PATH
+    environment:
+      TZ: ${TZ}      
     env_file:
       - .env
       - /srv/docker/env/immich.env
@@ -64,7 +65,7 @@ services:
     env_file:
       - /srv/docker/env/immich.env
     volumes:
-      - /srv/docker/immich_postgres:/var/lib/postgresql/data
+      - /srv/docker/immich_postgres:/var/lib/postgresql/data  #DB_DATA_LOCATION
     shm_size: 128mb
     restart: always
     networks:
