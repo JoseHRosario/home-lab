@@ -10,13 +10,9 @@ services:
       - /d:/d:ro
     restart: unless-stopped
     networks:
-      - coiso: {}
-      - bridge:
-        aliases: [] 
+      - coiso
       
 networks:
   coiso:
     name: coiso
-    external: true
-  bridge:
     external: true
