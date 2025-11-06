@@ -17,4 +17,5 @@ networks:
   coiso:
     name: coiso
     external: true
-  
+  bridge:
+    external: true
