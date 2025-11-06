@@ -2,10 +2,8 @@ services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
-    ports:
-      - 3010:3000
-    environment:
-      HOMEPAGE_ALLOWED_HOSTS: home.kerumirembora.com  
+    env_file:
+      - /srv/docker/env/homepage.env
     volumes:
       - /srv/docker/homepage/config:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
