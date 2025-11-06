@@ -11,6 +11,7 @@ services:
     restart: unless-stopped
     networks:
       - coiso
+      - bridge
       
 networks:
   coiso:
