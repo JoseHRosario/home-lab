@@ -7,8 +7,6 @@ services:
     volumes:
       - /srv/docker/uptimekuma:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 3002:3001  
     restart: always
     networks:
       - coiso
