@@ -30,7 +30,10 @@ services:
     restart: unless-stopped
     networks:
       - coiso
-    
+
+volumes:
+  prometheus_data: {}
+
 networks:
   coiso:
     name: coiso
