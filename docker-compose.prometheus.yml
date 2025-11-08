@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - /srv/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - localprom
+    ports:
+      - 9092:9090
+networks:
+    - coiso
+    - development-server
+
+networks:
+  coiso:
+    name: coiso
+    external: true
+  development-server:
+    name: development-server
+    external: true    
