@@ -9,9 +9,9 @@ services:
       - localprom
     ports:
       - 9092:9090
-networks:
-    - coiso
-    - development-server
+    networks:
+      - coiso
+      - development-server
 
 networks:
   coiso:
