@@ -2,6 +2,7 @@ version: '3.3'
 
 services:
   prometheus:
+    container_name: prometheus
     image: prom/prometheus
     volumes:
       - /srv/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
