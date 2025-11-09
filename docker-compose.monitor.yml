@@ -4,6 +4,8 @@ services:
   prometheus:
     container_name: prometheus
     image: prom/prometheus
+    env_file:
+      - /srv/docker/env/monitor.env
     volumes:
       - /srv/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
@@ -14,9 +16,25 @@ services:
       - coiso
       - development-server
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - /srv/docker/grafana/provisioning:/etc/grafana/provisioning
+    env_file:
+      - /srv/docker/env/monitor.env      
+    ports:
+      - "3030:3000"
+    restart: unless-stopped
+    networks:
+      - coiso
+      
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
+    env_file:
+      - /srv/docker/env/monitor.env
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -33,6 +51,7 @@ services:
 
 volumes:
   prometheus_data: {}
+  grafana_data: {}
 
 networks:
   coiso:
