@@ -5,7 +5,7 @@ services:
     container_name: prometheus
     image: prom/prometheus
     env_file:
-      - /srv/docker/env/monitor.env
+      - /srv/docker/env/server-monitor.env
     volumes:
       - /srv/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
@@ -23,7 +23,7 @@ services:
       - grafana_data:/var/lib/grafana
       - /srv/docker/grafana/provisioning:/etc/grafana/provisioning
     env_file:
-      - /srv/docker/env/monitor.env      
+      - /srv/docker/env/server-monitor.env
     ports:
       - "3030:3000"
     restart: unless-stopped
@@ -34,7 +34,7 @@ services:
     image: prom/node-exporter:latest
     container_name: node-exporter
     env_file:
-      - /srv/docker/env/monitor.env
+      - /srv/docker/env/server-monitor.env
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
