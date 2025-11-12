@@ -22,6 +22,7 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - /srv/docker/grafana/provisioning:/etc/grafana/provisioning
+      - /srv/docker/grafana/grafana.ini:/etc/grafana/grafana.ini
     env_file:
       - /srv/docker/env/server-monitor.env
     ports:
