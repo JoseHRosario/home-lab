@@ -9,8 +9,6 @@ services:
     volumes:
       - /srv/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    ports:
-      - 9092:9090
     restart: unless-stopped 
     networks:
       - coiso
@@ -25,8 +23,6 @@ services:
       - /srv/docker/grafana/grafana.ini:/etc/grafana/grafana.ini
     env_file:
       - /srv/docker/env/server-monitor.env
-    ports:
-      - "3030:3000"
     restart: unless-stopped
     networks:
       - coiso
@@ -44,8 +40,6 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($|/)'
-    ports:
-      - "9100:9100"
     restart: unless-stopped
     networks:
       - coiso
