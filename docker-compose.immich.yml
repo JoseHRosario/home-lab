@@ -18,8 +18,6 @@ services:
       - /d/samba/pictures/album:/usr/src/app/external     #EXTERNAL_PATH
     env_file:
       - /srv/docker/env/immich.env
-    ports:
-      - '2283:2283'
     depends_on:
       - redis
       - database
