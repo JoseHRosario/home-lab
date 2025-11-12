@@ -14,18 +14,6 @@ services:
       ## In production the healthcheck section should be commented.
       disable: true
 
-  redis:
-    image: 'redis:alpine'
-    container_name: 'redis'
-    volumes:
-      - './redis:/data'
-    networks:
-      - coiso
-    restart: 'unless-stopped'
-    environment:
-      TZ: 'Australia/Melbourne'
-
-
 networks:
   coiso:
     name: coiso
