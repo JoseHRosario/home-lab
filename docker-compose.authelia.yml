@@ -5,6 +5,7 @@ services:
     container_name: authelia
     volumes:
       - /srv/docker/authelia/config:/config
+    user: "1000:1000"       
     env_file:
       - /srv/docker/env/bitcoin.env  
     networks:
