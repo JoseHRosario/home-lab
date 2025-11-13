@@ -5,9 +5,6 @@ services:
     container_name: authelia
     volumes:
       - /srv/docker/authelia/config:/config
-    environment:
-      PUID: 1000
-      PGID: 1000
     env_file:
       - /srv/docker/env/bitcoin.env  
     networks:
