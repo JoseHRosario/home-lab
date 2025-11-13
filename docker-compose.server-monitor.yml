@@ -27,23 +27,23 @@ services:
     networks:
       - coiso
 
-  # loki:
-  #   image: grafana/loki:latest
-  #   container_name: loki
-  #   ports:
-  #     - 3100:3100
-  #   volumes:
-  #     - /srv/docker/loki/loki-config.yml:/etc/loki/loki-config.yaml
-  #   networks:
-  #     - coiso
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - 3100:3100
+    volumes:
+      - /srv/docker/loki/loki-config.yml:/etc/loki/loki-config.yaml
+    networks:
+      - coiso
 
-  # promtail:
-  #   image: grafana/promtail:latest
-  #   container_name: promtail
-  #   volumes:
-  #     - /srv/docker/promtail/promtail-config.yml:/etc/promtail/promtail-config.yaml
-  #   networks:
-  #     - coiso
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    volumes:
+      - /srv/docker/promtail/promtail-config.yml:/etc/promtail/promtail-config.yaml
+    networks:
+      - coiso
 
   node-exporter:
     image: prom/node-exporter:latest
