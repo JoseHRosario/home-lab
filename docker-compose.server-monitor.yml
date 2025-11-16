@@ -9,6 +9,8 @@ services:
     volumes:
       - /srv/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
+    command:
+      - '--web.enable-remote-write-receiver'      
     restart: unless-stopped 
     networks:
       - coiso
