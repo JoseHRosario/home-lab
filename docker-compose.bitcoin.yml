@@ -22,7 +22,7 @@ services:
   
   btc-rpc-explorer:
     container_name: btc-rpc-explorer
-    image: getumbrel/btc-rpc-explorer:latest
+    image: getumbrel/btc-rpc-explorer:v3.5.1
     #define $UID, $GID in .env file the user to run docker and write in data folder
     user: "1000:1000"
     env_file:
