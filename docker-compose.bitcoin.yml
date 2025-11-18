@@ -20,6 +20,18 @@ services:
     networks:
       - coiso
   
+  btc-rpc-explorer:
+    container_name: btc-rpc-explorer
+    image: btc-rpc-explorer:latest
+    #define $UID, $GID in .env file the user to run docker and write in data folder
+    user: "1000:1000"
+    env_file:
+      - /srv/docker/env/bitcoin.env    
+    ports:
+      - "3002:3002"
+    networks:
+      - coiso  
+
   mempool-web:
     container_name: mempool-web
     image: mempool/frontend:latest
