@@ -1,0 +1,18 @@
+#Build the image:docker build -t btc-rpc-explorer .
+
+FROM node:20 as builder
+WORKDIR /workspace
+# Clone the btc-rpc-explorer repo into the builder stage (shallow clone)
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends git ca-certificates \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& git clone --depth 1 --single-branch https://github.com/janoside/btc-rpc-explorer . \
+	&& rm -rf .git \
+	&& npm install --production=false
+
+FROM node:20-alpine
+WORKDIR /workspace
+COPY --from=builder /workspace .
+RUN apk --update add git
+CMD npm start
+EXPOSE 3002

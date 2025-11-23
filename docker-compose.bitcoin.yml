@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   bitcoind:
-    image: bitcoin-core:latest    
+    image: bitcoin-core:latest
     container_name: bitcoind
     restart: unless-stopped
     user: "1000:1000"
@@ -22,7 +22,7 @@ services:
   
   btc-rpc-explorer:
     container_name: btc-rpc-explorer
-    image: getumbrel/btc-rpc-explorer:v3.5.1
+    image: btc-rpc-explorer:latest
     #define $UID, $GID in .env file the user to run docker and write in data folder
     user: "1000:1000"
     env_file:
