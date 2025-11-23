@@ -23,55 +23,11 @@ services:
   btc-rpc-explorer:
     container_name: btc-rpc-explorer
     image: btc-rpc-explorer:latest
-    #define $UID, $GID in .env file the user to run docker and write in data folder
     user: "1000:1000"
     env_file:
       - /srv/docker/env/bitcoin.env    
-    ports:
-      - "3002:3002"
     networks:
       - coiso  
-
-  mempool-web:
-    container_name: mempool-web
-    image: mempool/frontend:latest
-    env_file:
-      - /srv/docker/env/bitcoin.env      
-    user: "1000:1000"
-    restart: on-failure
-    stop_grace_period: 1m
-    command: "./wait-for db:3306 --timeout=720 -- nginx -g 'daemon off;'"
-    networks:
-      - coiso     
-
-  mempool-api:
-    container_name: mempool-api
-    image: mempool/backend:latest
-    env_file:
-      - /srv/docker/env/bitcoin.env
-    user: "1000:1000"
-    depends_on:
-      - mempool-db
-    restart: on-failure
-    stop_grace_period: 1m
-    command: "./wait-for-it.sh db:3306 --timeout=720 --strict -- ./start.sh"
-    volumes:
-      - /srv/docker/mempool/data:/backend/cache
-    networks:
-      - coiso    
-
-  mempool-db:
-    container_name: mempool-db
-    image: mariadb:10.5.21
-    env_file:
-      - /srv/docker/env/bitcoin.env
-    user: "1000:1000"
-    restart: on-failure
-    stop_grace_period: 1m
-    volumes:
-      - /srv/docker/mempool/mysql/data:/var/lib/mysql
-    networks:
-      - coiso
 
 networks:
   coiso:
