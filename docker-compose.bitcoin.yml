@@ -31,12 +31,17 @@ services:
     image: btc-rpc-explorer:latest
     user: "1000:1000"
     env_file:
-      - /srv/docker/env/bitcoin.env    
+      - /srv/docker/env/bitcoin.env 
+    volumes:
+      - btc-explorer-workspace:/workspace   
     depends_on:
       bitcoind:
         condition: service_healthy  
     networks:
       - coiso  
+
+volumes:
+  btc-explorer-workspace:
 
 networks:
   coiso:
