@@ -28,7 +28,7 @@ services:
   
   btc-rpc-explorer:
     container_name: btc-rpc-explorer
-    image: btc-rpc-explorer:latest
+    image: btc-rpc-explorer:1000
     user: "1000:1000"
     env_file:
       - /srv/docker/env/bitcoin.env 
