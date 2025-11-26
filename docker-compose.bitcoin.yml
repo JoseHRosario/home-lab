@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   bitcoind:
-    image: bitcoin-core:v29
+    build: ./Dockerfiles/bitcoind
     container_name: bitcoind
     restart: unless-stopped
     user: "1000:1000"
@@ -28,20 +28,15 @@ services:
   
   btc-rpc-explorer:
     container_name: btc-rpc-explorer
-    image: btc-rpc-explorer:1000
+    build: ./Dockerfiles/btc-rpc-explorer
     user: "1000:1000"
     env_file:
       - /srv/docker/env/bitcoin.env 
-    volumes:
-      - btc-explorer-workspace:/workspace   
     depends_on:
       bitcoind:
         condition: service_healthy  
     networks:
       - coiso  
-
-volumes:
-  btc-explorer-workspace:
 
 networks:
   coiso:
