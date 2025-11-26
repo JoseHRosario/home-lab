@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   bitcoind:
-    image: bitcoin-core:latest
+    image: bitcoin-core:v29
     container_name: bitcoind
     restart: unless-stopped
     user: "1000:1000"
