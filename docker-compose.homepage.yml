@@ -4,7 +4,7 @@ services:
     container_name: homepage
     env_file:
       - /srv/docker/env/homepage.env
-    #user: "1000:1000"
+    #user: "1000:1000" # fucks docker for homepage
     volumes:
       - /srv/docker/homepage/config:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
