@@ -3,7 +3,7 @@ version: "3.8"
 services:
   hello-world:
     build: 
-      dockerfile: ./Dockerfiles/hello-world
+      dockerfile: ./Dockerfiles/hello-world/Dockerfile
       cache_from: []
       no_cache: true
     container_name: hello-world
