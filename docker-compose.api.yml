@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  hello-world:
+    build: ./Dockerfiles/hello-world
+    container_name: hello-world
+    restart: unless-stopped
+    ports:
+      - "8088:8080"        
+    networks:
+      - coiso
+  
+networks:
+  coiso:
+    name: coiso
+    external: true
