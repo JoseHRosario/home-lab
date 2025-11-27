@@ -2,7 +2,10 @@ version: "3.8"
 
 services:
   hello-world:
-    build: ./Dockerfiles/hello-world
+    build: 
+      dockerfile: ./Dockerfiles/hello-world
+      cache_from: []
+      no_cache: true
     container_name: hello-world
     restart: unless-stopped
     ports:
