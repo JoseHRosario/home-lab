@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres-dev:
+    image: postgres:latest
+    container_name: postgres-dev
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+      - /srv/docker/postgres-dev/data:/var/lib/postgresql
+    env_file:
+      - /srv/docker/env/postgres-dev.env
+    networks:
+      - development-server
+      
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart: unless-stopped
+    ports:
+      - 5050:80
+    env_file:
+      - /srv/docker/env/postgres-dev.env
+    networks:
+      - development-server
+
+networks:
+  development-server:
+    name: development-server
+    external: true
