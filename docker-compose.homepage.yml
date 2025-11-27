@@ -13,7 +13,6 @@ services:
     networks:
       - coiso
       - development-server
-      - bridge
       
 networks:
   coiso:
@@ -21,7 +20,4 @@ networks:
     external: true
   development-server:
     name: development-server
-    external: true
-  bridge:
-    name: bridge
     external: true
