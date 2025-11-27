@@ -12,8 +12,16 @@ services:
     restart: unless-stopped
     networks:
       - coiso
+      - development-server
+      - bridge
       
 networks:
   coiso:
     name: coiso
+    external: true
+  development-server:
+    name: development-server
+    external: true
+  bridge:
+    name: bridge
     external: true
