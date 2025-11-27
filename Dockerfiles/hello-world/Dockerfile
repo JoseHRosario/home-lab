@@ -17,7 +17,7 @@ WORKDIR /src
 RUN apt-get update \
  && apt-get install -y --no-install-recommends git \
  && rm -rf /var/lib/apt/lists/*
-RUN git clone --depth1 --branch "$REPO_REF" "$REPO_URL" .
+RUN git clone --branch "$REPO_REF" "$REPO_URL" .
 RUN dotnet restore "./HelloWorld.csproj"
 RUN dotnet build "./HelloWorld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
