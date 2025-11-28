@@ -16,6 +16,8 @@ services:
       - /srv/docker/immich_server:/data                   #UPLOAD_LOCATION
       - /d/samba/pictures/immich:/data/library            #LIBRARY_LOCATION
       - /d/samba/pictures/album:/usr/src/app/external     #EXTERNAL_PATH
+    ports:
+      - "2283:2283"  # HTTP_PORT
     env_file:
       - /srv/docker/env/immich.env
     depends_on:
