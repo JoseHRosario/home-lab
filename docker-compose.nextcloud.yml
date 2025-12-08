@@ -13,7 +13,7 @@ services:
 
   nextcloud-app:
     container_name: nextcloud-app
-    image: nextcloud:fpm
+    image: nextcloud:latest
     env_file:
       - /srv/docker/env/nextcloud.env
     restart: always
