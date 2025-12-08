@@ -1,0 +1,34 @@
+services:
+  nextcloud-db:
+    container_name: nextcloud-db
+    image: mariadb:10.6
+    env_file:
+      - /srv/docker/env/nextcloud.env
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - coiso
+
+  nextcloud-app:
+    container_name: nextcloud-app
+    image: nextcloud:fpm
+    env_file:
+      - /srv/docker/env/nextcloud.env
+    restart: always
+    depends_on:
+      - nextcloud-db
+    volumes:
+      - nextcloud:/var/www/html
+    networks:
+      - coiso
+
+networks:
+  coiso:
+    name: coiso
+    external: true
+
+volumes:
+  nextcloud:
+  db:
