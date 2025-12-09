@@ -24,6 +24,23 @@ services:
     networks:
       - coiso
 
+  nextcloud-harp:
+    image: ghcr.io/nextcloud/nextcloud-appapi-harp:release
+    container_name: nextcloud-harp
+    restart: unless-stopped
+    env_file:
+      - /srv/docker/env/nextcloud.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/docker/nextcloud/harp/certs:/certs
+    ports:
+      # Port 8780 is for HTTP communication from Nextcloud to HaRP
+      - "8780:8780"
+      # Port 8782 is for FRP tunnel used by ExApps to connect to HaRP
+      - "8782:8782"
+    networks:
+      - coiso 
+
 networks:
   coiso:
     name: coiso
