@@ -24,9 +24,9 @@ services:
     networks:
       - coiso
 
-  nextcloud-harp:
+  appapi-harp:
     image: ghcr.io/nextcloud/nextcloud-appapi-harp:release
-    container_name: nextcloud-harp
+    container_name: appapi-harp
     restart: unless-stopped
     env_file:
       - /srv/docker/env/nextcloud.env
