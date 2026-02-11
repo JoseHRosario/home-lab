@@ -37,8 +37,8 @@ services:
     stdin_open: true
     tty: true
     init: true
-    #entrypoint: ["node", "dist/index.js"]
-    command: tail -f /dev/null
+    entrypoint: ["node", "dist/index.js"]
+    #command: tail -f /dev/null
     networks:
       - coiso
 
