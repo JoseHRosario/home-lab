@@ -7,6 +7,7 @@ services:
       - /srv/docker/env/openclaw.env   
     volumes:
       - /srv/docker/openclaw/config:/home/node/.openclaw
+      - /srv/docker/openclaw/workspace:/home/node/.openclaw/workspace
     ports:
       - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
       - "${OPENCLAW_BRIDGE_PORT:-18790}:18790"
@@ -25,22 +26,22 @@ services:
     networks:
       - coiso
 
-  # openclaw-cli:
-  #   container_name: openclaw-cli
-  #   image: ghcr.io/openclaw/openclaw:2026.2.9
-  #   user: "1000:1000"
-  #   env_file:
-  #     - /srv/docker/env/openclaw.env  
-  #   volumes:
-  #     - /srv/openclaw/config:/home/node/.openclaw
-  #     - /srv/openclaw/workspace:/home/node/.openclaw/workspace
-  #   stdin_open: true
-  #   tty: true
-  #   init: true
-  #   entrypoint: ["node", "dist/index.js"]
-  #   #command: tail -f /dev/null
-  #   networks:
-  #     - coiso
+  openclaw-cli:
+    container_name: openclaw-cli
+    image: ghcr.io/openclaw/openclaw:2026.2.9
+    user: "1000:1000"
+    env_file:
+      - /srv/docker/env/openclaw.env  
+    volumes:
+      - /srv/docker/openclaw/config:/home/node/.openclaw
+      - /srv/docker/openclaw/workspace:/home/node/.openclaw/workspace
+    stdin_open: true
+    tty: true
+    init: true
+    #entrypoint: ["node", "dist/index.js"]
+    command: tail -f /dev/null
+    networks:
+      - coiso
 
 networks:
   coiso:
