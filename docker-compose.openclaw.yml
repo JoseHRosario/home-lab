@@ -7,7 +7,6 @@ services:
       - /srv/docker/env/openclaw.env   
     volumes:
       - /srv/docker/openclaw/config:/home/node/.openclaw
-      #- /srv/docker/openclaw/workspace:/home/node/.openclaw/workspace
     ports:
       - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
       - "${OPENCLAW_BRIDGE_PORT:-18790}:18790"
