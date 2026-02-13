@@ -1,7 +1,7 @@
 services:
   openclaw-gateway:
     container_name: openclaw-gateway
-    image: ghcr.io/openclaw/openclaw:2026.2.9
+    image: ghcr.io/openclaw/openclaw:2026.2.12
     user: "1000:1000"
     env_file:
       - /srv/docker/env/openclaw.env   
@@ -27,7 +27,7 @@ services:
 
   # openclaw-cli:
   #   container_name: openclaw-cli
-  #   image: ghcr.io/openclaw/openclaw:2026.2.9
+  #   image: ghcr.io/openclaw/openclaw:2026.2.12
   #   user: "1000:1000"
   #   env_file:
   #     - /srv/docker/env/openclaw.env  
