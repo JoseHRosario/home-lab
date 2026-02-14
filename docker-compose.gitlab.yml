@@ -1,0 +1,26 @@
+services:
+  gitlab:
+    container_name: gitlab
+    image: gitlab/gitlab-ce:latest
+    user: "1000:1000"
+    restart: always
+    hostname: 'gitlab.kerumirembora.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # Add any other gitlab.rb configuration here, each on its own line
+        external_url 'https://gitlab.kerumirembora.com'
+    # ports:
+    #   - '80:80'
+    #   - '443:443'
+    #   - '22:22'
+    volumes:
+      - /srv/docker/gitlab/config:/etc/gitlab
+      - /srv/docker/gitlab/logs:/var/log/gitlab
+      - /srv/docker/gitlab/data:/var/opt/gitlab
+    networks:
+      - coiso
+
+networks:
+  coiso:
+    name: coiso
+    external: true
