@@ -1,7 +1,7 @@
 services:
   openclaw-gateway:
     container_name: openclaw-gateway
-    image: ghcr.io/openclaw/openclaw:2026.2.13
+    image: openclaw:2026.2.13 # built from @coiso /srv/docker/_src/openclaw/Dockerfile.dev
     user: "1000:1000"
     env_file:
       - /srv/docker/env/openclaw.env   
