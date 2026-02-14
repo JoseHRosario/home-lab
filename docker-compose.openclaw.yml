@@ -1,12 +1,13 @@
 services:
   openclaw-gateway:
     container_name: openclaw-gateway
-    image: ghcr.io/openclaw/openclaw:2026.2.12
+    image: ghcr.io/openclaw/openclaw:2026.2.13
     user: "1000:1000"
     env_file:
       - /srv/docker/env/openclaw.env   
     volumes:
       - /srv/docker/openclaw/config:/home/node/.openclaw
+      - /srv/docker/openclaw/projects:/srv/projects
     ports:
       - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
       - "${OPENCLAW_BRIDGE_PORT:-18790}:18790"
