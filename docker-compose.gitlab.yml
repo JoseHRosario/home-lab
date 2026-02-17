@@ -2,7 +2,6 @@ services:
   gitlab:
     container_name: gitlab
     image: gitlab/gitlab-ce:latest
-    user: "1000:1000"
     restart: always
     hostname: 'gitlab.kerumirembora.com'
     environment:
