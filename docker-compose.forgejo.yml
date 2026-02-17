@@ -1,0 +1,32 @@
+services:
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:13
+    container_name: forgejo
+    env_file:
+      - /srv/docker/env/forgejo.env
+    restart: always
+    volumes:
+      - /srv/docker/forgejo:/data
+    ports:
+      - "3000:3000"
+      - "222:22"
+    depends_on:
+      - db
+    networks:
+      - coiso
+
+  forgejo-db:
+    image: postgres:14
+    container_name: forgejo-db
+    env_file:
+      - /srv/docker/env/forgejo.env
+    restart: always
+    volumes:
+      - /srv/docker/forgejo/postgres:/var/lib/postgresql/data
+    networks:
+      - coiso      
+
+networks:
+  coiso:
+    name: coiso
+    external: true      
