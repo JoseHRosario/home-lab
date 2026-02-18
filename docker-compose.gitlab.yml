@@ -8,10 +8,10 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
         external_url 'https://gitlab.kerumirembora.com'
-    # ports:
-    #   - '80:80'
-    #   - '443:443'
-    #   - '22:22'
+    ports:
+      - '8011:80'
+      - '4431:443'
+      - '222:22'
     volumes:
       - /srv/docker/gitlab/config:/etc/gitlab
       - /srv/docker/gitlab/logs:/var/log/gitlab
