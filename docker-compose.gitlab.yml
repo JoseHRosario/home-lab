@@ -8,6 +8,8 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
         external_url 'https://gitlab.kerumirembora.com'
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
     ports:
       - '8011:80'
       - '4431:443'
