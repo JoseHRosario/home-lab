@@ -1,0 +1,19 @@
+services:
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    restart: unless-stopped
+    env_file:
+      - /srv/docker/env/seq.env
+    volumes:
+      - /srv/docker/seq/data:/data
+    ports:
+      - "80:80"
+      - "5341:5341"
+    networks:
+      - development-server
+
+networks:
+  development-server:
+    name: development-server
+    external: true
