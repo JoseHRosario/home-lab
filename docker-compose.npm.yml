@@ -21,7 +21,7 @@ services:
       - db
     networks:
       - coiso
-
+      - development-server
 
   db:
     container_name: npm_db
@@ -34,9 +34,11 @@ services:
       - /etc/localtime:/etc/localtime:ro
     networks:
       - coiso
-
-
+      
 networks:
   coiso:
     name: coiso
+    external: true
+  development-server:
+    name: development-server
     external: true
