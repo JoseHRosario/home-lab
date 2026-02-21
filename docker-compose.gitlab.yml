@@ -10,6 +10,47 @@ services:
         external_url 'https://gitlab.kerumirembora.com'
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
+        puma['worker_processes'] = 0
+        sidekiq['concurrency'] = 7
+        alertmanager['enable'] = false
+        gitlab_exporter['enable'] = false
+        gitlab_kas['enable'] = false
+        node_exporter['enable'] = false
+        postgres_exporter['enable'] = false
+        prometheus_monitoring['enable'] = false
+        prometheus['enable'] = false
+        puma['exporter_enabled'] = false
+        redis_exporter['enable'] = false
+        sidekiq['metrics_enabled'] = false
+        gitaly['configuration'] = {
+            concurrency: [
+              {
+                'rpc' => "/gitaly.SmartHTTPService/PostReceivePack",
+                'max_per_repo' => 3,
+              }, {
+                'rpc' => "/gitaly.SSHService/SSHUploadPack",
+                'max_per_repo' => 3,
+              },
+            ],
+            cgroups: {
+                repositories: {
+                    count: 2,
+                },
+                mountpoint: '/sys/fs/cgroup',
+                hierarchy_root: 'gitaly',
+                memory_bytes: 500000,
+                cpu_shares: 512,
+            },
+        }
+        gitaly['env'] = {
+          'GITALY_COMMAND_SPAWN_MAX_PARALLEL' => '2'
+        }
+        gitlab_rails['env'] = {
+          'MALLOC_CONF' => 'dirty_decay_ms:1000,muzzy_decay_ms:1000'
+        }
+        gitaly['env'] = {
+          'MALLOC_CONF' => 'dirty_decay_ms:1000,muzzy_decay_ms:1000'
+        }
     ports:
       - '8011:80'
       - '4431:443'
