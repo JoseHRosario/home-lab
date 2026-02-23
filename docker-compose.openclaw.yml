@@ -1,7 +1,7 @@
 services:
   openclaw-gateway:
     container_name: openclaw-gateway
-    image: local/openclaw:2026.2.21 # built from @coiso /srv/docker/_src/openclaw/Dockerfile.dev
+    image: local/openclaw:2026.2.22 # built from @coiso /srv/docker/_src/openclaw/Dockerfile.dev
     pull_policy: never
     # image: ghcr.io/openclaw/openclaw:2026.2.14 # built from @coiso /srv/docker/_src/openclaw/Dockerfile.dev
     user: "1000:1000"
