@@ -57,8 +57,23 @@ services:
       - /srv/docker/gitlab/data:/var/opt/gitlab
     networks:
       - coiso
+      - development-server
 
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    container_name: gitlab-runner
+    restart: always
+    volumes:
+      - /srv/docker/gitlab-runner/config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+  networks:
+      - coiso      
+      - development-server
+      
 networks:
   coiso:
     name: coiso
+    external: true
+  development-server:
+    name: development-server
     external: true
