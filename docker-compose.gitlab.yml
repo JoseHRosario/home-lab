@@ -55,7 +55,7 @@ services:
       - '8011:80'
       - '4431:443'
       - '2222:22'
-      - '5050:5050'
+      - '5051:5050'
     volumes:
       - /srv/docker/gitlab/config:/etc/gitlab
       - /srv/docker/gitlab/logs:/var/log/gitlab
