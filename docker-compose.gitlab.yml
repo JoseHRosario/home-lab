@@ -10,6 +10,10 @@ services:
         external_url 'https://gitlab.kerumirembora.com'
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
+        registry_external_url 'https://gitlabcr.kerumirembora.com'
+        registry_nginx['listen_port'] = 5050
+        registry_nginx['listen_https'] = false
+        registry['enable'] = true
         puma['worker_processes'] = 0
         sidekiq['concurrency'] = 7
         alertmanager['enable'] = false
@@ -51,6 +55,7 @@ services:
       - '8011:80'
       - '4431:443'
       - '2222:22'
+      - '5050:5050'
     volumes:
       - /srv/docker/gitlab/config:/etc/gitlab
       - /srv/docker/gitlab/logs:/var/log/gitlab
