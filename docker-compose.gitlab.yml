@@ -14,6 +14,9 @@ services:
         registry_nginx['listen_port'] = 5050
         registry_nginx['listen_https'] = false
         registry['enable'] = true
+        registry['database'] = {
+          'enabled' => true,
+        }
         puma['worker_processes'] = 0
         sidekiq['concurrency'] = 7
         alertmanager['enable'] = false
