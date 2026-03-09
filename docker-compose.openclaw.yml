@@ -3,7 +3,7 @@ services:
     container_name: openclaw-gateway
     # image: local/openclaw:2026.2.26 # built from @coiso /srv/docker/_src/openclaw/Dockerfile.dev
     # pull_policy: never
-    image: gitlabcr.kerumirembora.com/xungamancorp/openclaw:2026.3.2.2
+    image: gitlabcr.kerumirembora.com/xungamancorp/openclaw:2026.3.2.7
     user: "1000:1000"
     env_file:
       - /srv/docker/env/openclaw.env   
