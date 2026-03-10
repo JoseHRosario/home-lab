@@ -3,14 +3,12 @@ services:
     container_name: openclaw-gateway
     # image: local/openclaw:2026.2.26 # built from @coiso /srv/docker/_src/openclaw/Dockerfile.dev
     # pull_policy: never
-    image: gitlabcr.kerumirembora.com/xungamancorp/openclaw:2026.3.7
+    image: gitlabcr.kerumirembora.com/xungamancorp/openclaw:2026.3.8
     user: "1000:1000"
     env_file:
       - /srv/docker/env/openclaw.env   
     volumes:
       - /srv/docker/openclaw/config:/home/node/.openclaw
-      - /srv/docker/openclaw/projects:/srv/projects
-      - /srv/docker/agent-cli/bin/agent:/usr/local/bin/agent:ro
     ports:
       - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
       - "${OPENCLAW_BRIDGE_PORT:-18790}:18790"
