@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   maestro-api:
-    image: gitlabcr.kerumirembora.com/xungamancorp/maestro/api:qa-latest
+    image: gitlabcr.kerumirembora.com/xungamancorp/openclaw:2026.3.11
+    #image: gitlabcr.kerumirembora.com/xungamancorp/maestro/api:qa-latest
     container_name: maestro-api
     restart: unless-stopped
     user: "1000:1000"
@@ -14,7 +15,8 @@ services:
       - development-server
       
   maestro-webapp:
-    image: gitlabcr.kerumirembora.com/xungamancorp/maestro/webapp:qa-latest
+    image: gitlabcr.kerumirembora.com/xungamancorp/openclaw:2026.3.11
+    #image: gitlabcr.kerumirembora.com/xungamancorp/maestro/webapp:qa-latest
     container_name: maestro-webapp
     restart: unless-stopped
     ports:
