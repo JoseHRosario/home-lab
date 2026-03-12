@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   maestro-api:
-    image: registry.gitlab:5051/xungamancorp/maestro/api:qa-latest
+    image: gitlab/xungamancorp/maestro/api:qa-latest
     container_name: maestro-api
     restart: unless-stopped
     user: "1000:1000"
@@ -14,7 +14,7 @@ services:
       - development-server
       
   maestro-webapp:
-    image: registry.gitlab:5051/xungamancorp/maestro/webapp:qa-latest
+    image: gitlab/xungamancorp/maestro/webapp:qa-latest
     container_name: maestro-webapp
     restart: unless-stopped
     ports:
