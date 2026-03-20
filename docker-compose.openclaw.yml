@@ -26,8 +26,12 @@ services:
       ]
     networks:
       - coiso
+      - development-server
 
 networks:
   coiso:
     name: coiso
     external: true
+  development-server:
+    name: development-server
+    external: true    
