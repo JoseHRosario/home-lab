@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     user: "1000:1000"
     env_file:
-      - /srv/docker/env/development-server/maestro-api.env
+      - /srv/docker/env/development-server/maestro.env
     networks:
       - development-server
       
