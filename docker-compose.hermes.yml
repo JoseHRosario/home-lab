@@ -5,7 +5,7 @@ services:
     image: nousresearch/hermes-agent
     container_name: hermes
     restart: unless-stopped
-    user: "1000:1000"
+    #user: "1000:1000"
     env_file:
       - /srv/docker/env/hermes.env
     volumes:
