@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  hermes:
+    container_name: hermes
+    restart: unless-stopped
+    volumes:
+        - srv/docker/hermes:/opt/data
+    image: nousresearch/hermes-agent
+    command: gateway run
+  networks:
+      - coiso
+      - development-server
+
+networks:
+  coiso:
+    name: coiso
+    external: true
+  development-server:
+    name: development-server
+    external: true
