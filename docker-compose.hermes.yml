@@ -8,7 +8,7 @@ services:
         - srv/docker/hermes:/opt/data
     image: nousresearch/hermes-agent
     command: gateway run
-  networks:
+    networks:
       - coiso
       - development-server
 
