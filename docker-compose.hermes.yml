@@ -2,11 +2,14 @@ version: '3.8'
 
 services:
   hermes:
+    image: nousresearch/hermes-agent
     container_name: hermes
     restart: unless-stopped
+    user: "1000:1000"
+    env_file:
+      - /srv/docker/env/hermes.env
     volumes:
-        - srv/docker/hermes:/opt/data
-    image: nousresearch/hermes-agent
+      - /d/srv/docker/hermes:/opt/data
     command: gateway run
     networks:
       - coiso
