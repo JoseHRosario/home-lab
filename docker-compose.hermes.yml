@@ -9,7 +9,7 @@ services:
     env_file:
       - /srv/docker/env/hermes.env
     volumes:
-      - /d/srv/docker/hermes:/opt/data
+      - /srv/docker/hermes:/opt/data
     command: gateway run
     networks:
       - coiso
