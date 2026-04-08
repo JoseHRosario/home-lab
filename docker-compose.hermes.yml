@@ -10,7 +10,7 @@ services:
       - /srv/docker/env/hermes.env
     volumes:
       - /srv/docker/hermes:/opt/data
-      - /srv/docker/obsidian/'Obsidian Vault':/vault
+      - "/srv/docker/obsidian/Obsidian Vault:/vault"
     command: gateway run
     networks:
       - coiso
