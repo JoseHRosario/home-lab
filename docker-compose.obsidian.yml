@@ -12,7 +12,7 @@ services:
         - 3001:3001
     volumes:
         - /srv/docker/obsidian:/config
-    #shm_size: 1gb
+    shm_size: 1gb
     restart: unless-stopped
     networks:
       - coiso
