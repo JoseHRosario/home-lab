@@ -8,8 +8,8 @@ services:
     #user: "1000:1000"
     env_file:
       - /srv/docker/env/hermes.env
-    ports:
-      - "8642:8642"  
+    # ports:
+    #   - "8642:8642"  
     volumes:
       - /srv/docker/hermes:/opt/data
       - "/srv/docker/obsidian/Obsidian Vault:/vault"
@@ -28,8 +28,8 @@ services:
     container_name: hermes-dashboard
     restart: unless-stopped
     command: dashboard --host 0.0.0.0 --insecure
-    ports:
-      - "9119:9119"
+    # ports:
+    #   - "9119:9119"
     volumes:
       - /srv/docker/hermes:/opt/data
     environment:
