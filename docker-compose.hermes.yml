@@ -12,6 +12,7 @@ services:
     #   - "8642:8642"  
     volumes:
       - /srv/docker/hermes:/opt/data
+      - /d/srv/projects:/projects
       - "/srv/docker/obsidian/Obsidian Vault:/vault"
     command: gateway run
     deploy:
