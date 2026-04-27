@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   hermes:
-    image: nousresearch/hermes-agent:latest
+    image: gitlabcr.kerumirembora.com/xungamancorp/hermes:latest
     container_name: hermes
     restart: unless-stopped
     #user: "1000:1000"
@@ -25,7 +25,7 @@ services:
       - development-server
 
   hermes-dashboard:
-    image: nousresearch/hermes-agent:latest
+    image: gitlabcr.kerumirembora.com/xungamancorp/hermes:latest
     container_name: hermes-dashboard
     restart: unless-stopped
     command: dashboard --host 0.0.0.0 --insecure
