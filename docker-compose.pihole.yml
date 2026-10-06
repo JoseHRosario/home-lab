@@ -6,8 +6,8 @@ services:
     container_name: pihole
     image: pihole/pihole:latest
     ports:
-      - "192.168.1.98:53:53/tcp"
-      - "192.168.1.98:53:53/udp"
+      - "192.168.8.188:53:53/tcp"
+      - "192.168.8.188:53:53/udp"
     env_file:
       - /srv/docker/env/pihole.env
     volumes:
