@@ -29,7 +29,7 @@ services:
     # the whole host of pids.
     pids_limit: 2048
     ports:
-      - "3100:3100"
+      - "3101:3100"
     env_file:
       - /srv/docker/env/paperclip.env
     volumes:
