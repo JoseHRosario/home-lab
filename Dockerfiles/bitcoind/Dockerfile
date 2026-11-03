@@ -3,7 +3,7 @@
 # syntax=docker/dockerfile:1
 FROM debian:bookworm-slim AS downloader
 
-ENV BITCOIN_VERSION=29.0
+ENV BITCOIN_VERSION=32.1
 WORKDIR /tmp
 
 # Install required tools
@@ -34,7 +34,7 @@ RUN tar -xzf bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz
 
 # ----------- RUNTIME STAGE -----------
 FROM debian:bookworm-slim
-ENV BITCOIN_VERSION=29.0
+ENV BITCOIN_VERSION=32.1
 LABEL maintainer="you@example.com"
 LABEL description="Bitcoin Core ${BITCOIN_VERSION} verified official binaries"
 
